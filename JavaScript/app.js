@@ -1,27 +1,35 @@
 
-//Tipo de datos 
-"Hello World"  //String
-'Hello Worñd' //String
+//Condicionales (IF, ELSE IF, ELSE) 
+
+let password = "hola123";
+
+let input = 'asadadsasdasdasd'
+
+let result = input == password;
+
+if(result == true){
+    console.log("Login Correcto");
+}else{
+    console.log("Login Incorrecto");
+}
 
 
-10000 //Number
-10.5 //Number
-
-true //Boolean/Boleano
-false //Boolean/Boleano
+//Condicionales (SWITCH CASE)
 
 
-//array/Arreglo
-['joe', 'maria', 'peter'] 
-[10, 20, 30, 40, 50]
-[true, false, true]
+let typeCard = 'Debit Card';
 
-//object/Objeto
-'ryan'
-70.7
-14
-true
-let user = {"name": 'ryan', "score": 70.7, "hours": 14, "profesional": true};
+switch(typeCard){
+    case 'Debit Card':
+        console.log("This is debit card");
+        break;
+    case 'Credit Card':
+        console.log("This is credit card");
+        break;
+    default:
+        console.log("No card detected");
+        break;
+}
 
 
 
