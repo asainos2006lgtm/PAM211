@@ -1,4 +1,5 @@
-//Tipos de datos 
+//Tipos de variables en JavaScript
+// var, let, const
 
 var nameuser = "Juan"; // String
 let lastname = 'Perez'; // String
