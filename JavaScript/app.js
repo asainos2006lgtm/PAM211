@@ -1,35 +1,20 @@
+//Bucles o iteraciones 
 
-//Condicionales (IF, ELSE IF, ELSE) 
+//While
 
-let password = "hola123";
+let count = 0 
 
-let input = 'asadadsasdasdasd'
-
-let result = input == password;
-
-if(result == true){
-    console.log("Login Correcto");
-}else{
-    console.log("Login Incorrecto");
+while ( count < 50 ) {
+    console.log(count);
+    count++ 
 }
 
 
-//Condicionales (SWITCH CASE)
+//For
 
+let names = ['Alice', 'Bob', 'Charlie']
 
-let typeCard = 'Debit Card';
-
-switch(typeCard){
-    case 'Debit Card':
-        console.log("This is debit card");
-        break;
-    case 'Credit Card':
-        console.log("This is credit card");
-        break;
-    default:
-        console.log("No card detected");
-        break;
+for (let i = 0; i < names.length; i++) {
+    console.log(names[i]);
 }
-
-
 
