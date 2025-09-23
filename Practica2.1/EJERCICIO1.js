@@ -8,9 +8,8 @@ const persona = {
   }
   
 };
-
 // Destructuración
 const { nombre, edad, direccion: {ciudad, pais}} = persona;
 
 // Mensaje
-console.log("Me llamo " + nombre + ", tengo " + edad + " años y vivo en " + ciudad + ", " + pais + ".");
+console.log("Me llamo " + nombre + ", tengo " + edad + " años y vivo en " + ciudad + ", " + pais);
