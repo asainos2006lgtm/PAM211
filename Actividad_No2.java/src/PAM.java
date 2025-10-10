@@ -9,7 +9,7 @@ class inicioPAM  {
             + "4. No se aceptan exames fuera de tiempo\n"
             + "5. Plagio de trabajos = 0 para todos\n"
             + "6. 3 faltas = Fianl de parcial\n"
-            + "7. Califocacion maxima en final es de 8";
+            + "7. Calificacion maxima en final es de 8";
     }
 
     public String LineamientosDeClassroom() {
@@ -48,6 +48,7 @@ class inicioPAM  {
 
 
 }
+
 
 public class PAM {
     public static void main(String[] args) {

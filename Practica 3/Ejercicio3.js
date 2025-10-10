@@ -7,7 +7,7 @@ function simularPeticionAPI () {
 }
 
 async function obtenerDatos() {
-    console.log("Esperando datos...");
+    
     const datos = await simularPeticionAPI();
     console.log(datos);
 }

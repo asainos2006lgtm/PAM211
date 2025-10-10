@@ -8,7 +8,7 @@ const persona = {
   }
   
 };
-// Destructuración
+// Desestructuración
 const { nombre, edad, direccion: {ciudad, pais}} = persona;
 
 // Mensaje
