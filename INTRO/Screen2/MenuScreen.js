@@ -10,8 +10,6 @@ import Barra from './Barra'
 import Expo3 from './Expo3'
 
 
-
-
 export default function MenuScreen () {
   const [screen, setScreen] = useState('menu');
   switch(screen) {
@@ -40,7 +38,8 @@ export default function MenuScreen () {
                 <Button onPress={()=> setScreen('botones')} title = 'Practica: Botones'/>
                 <Button onPress={()=> setScreen('text_input_alert')} title = 'Practica: TextInput & Alert'/>
                 <Button onPress={()=> setScreen('image_background')} title = 'Practica: Image & Background'/>
-               
+                </View>
+                <View style={styles.botonescontainer2}>
                 <Button onPress={()=> setScreen('scroll_view')} title = 'Practica: ScrollView'/>
                 <Button onPress={()=> setScreen('activity_indicator')} title = 'Practica: Activity Indicator'/>
                 <Button onPress={()=> setScreen('flatlist_sectionlist')} title = 'Practica:FlatListSectionList'/>
@@ -74,12 +73,12 @@ const styles = StyleSheet.create({
   },
     botonescontainer:{
     marginTop:20,
-    flexDirection:'column',
+    flexDirection:'row',
     gap:10,
   },
     botonescontainer2:{
-    marginTop:20,
-    flexDirection:'column',
+    marginTop:40,
+    flexDirection:'row',
     gap:10 ,
   },
 

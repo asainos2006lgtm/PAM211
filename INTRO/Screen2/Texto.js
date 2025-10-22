@@ -11,7 +11,7 @@ export default function Texto() {
     if(Platform.OS === 'web') {
       window.alert('ERROR: Ingresa tu nombre, contraseña y comentarios');
   } else {
-    Alert.alert('ERROR: Ingresa un nombre, contraseña y comentarios');
+    Alert.alert('ERROR: Ingresa tu nombre, contraseña y comentarios');
   }}else {
     if(Platform.OS === 'web') {
       window.alert(`Hola, ${nombre} Bienvenido`);
