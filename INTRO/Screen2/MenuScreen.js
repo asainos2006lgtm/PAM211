@@ -8,6 +8,7 @@ import Listas from './Listas'
 import ModalScreen from './ModalScreen'
 import Barra from './Barra'
 import Expo3 from './Expo3'
+import RepasoScreen from './RepasoScreen'
 
 
 export default function MenuScreen () {
@@ -29,28 +30,51 @@ export default function MenuScreen () {
         return <Listas/>;
     case 'modal':
         return <ModalScreen/>;
-    case 'menu': 
-        return (
-            <View style={styles.container}>
-                <Text style = {styles.texto}>MENU DE PRACTICAS</Text>
-                <View style={styles.botonescontainer}>
-                <Button onPress={()=> setScreen('contador')} title = 'Practica: Contador'/>
-                <Button onPress={()=> setScreen('botones')} title = 'Practica: Botones'/>
-                <Button onPress={()=> setScreen('text_input_alert')} title = 'Practica: TextInput & Alert'/>
-                <Button onPress={()=> setScreen('image_background')} title = 'Practica: Image & Background'/>
-                </View>
-                <View style={styles.botonescontainer2}>
-                <Button onPress={()=> setScreen('scroll_view')} title = 'Practica: ScrollView'/>
-                <Button onPress={()=> setScreen('activity_indicator')} title = 'Practica: Activity Indicator'/>
-                <Button onPress={()=> setScreen('flatlist_sectionlist')} title = 'Practica:FlatListSectionList'/>
-                <Button onPress={()=> setScreen('modal')} title = 'Practica: Modal'/>
-                </View>
-            </View>
-            );
-            default: 
-            <View>
-              <Text>Pantalla no encontrada</Text>
-          </View>
+    case 'repaso':
+        return <RepasoScreen/>;
+        case 'menu': 
+                return (
+                        <View style={styles.container}>
+                                <Text style = {styles.texto}>MENU DE PRACTICAS</Text>
+                                <View style={styles.botonescontainer}>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('contador')} title = 'Practica: Contador'/>
+                                    </View>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('botones')} title = 'Practica: Botones'/>
+                                    </View>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('text_input_alert')} title = 'Practica: TextInput & Alert'/>
+                                    </View>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('image_background')} title = 'Practica: Image & Background'/>
+                                    </View>
+                                </View>
+                                <View style={styles.botonescontainer2}>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('scroll_view')} title = 'Practica: ScrollView'/>
+                                    </View>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('activity_indicator')} title = 'Practica: Activity Indicator'/>
+                                    </View>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('flatlist_sectionlist')} title = 'Practica:FlatListSectionList'/>
+                                    </View>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('modal')} title = 'Practica: Modal'/>
+                                    </View>
+                                    <View style={styles.buttonWrapper}>
+                                        <Button onPress={()=> setScreen('repaso')} title = 'Practica: Repaso'/>
+                                    </View>
+                                </View>
+                        </View>
+                        );
+                        default: 
+                        return (
+                            <View>
+                                <Text>Pantalla no encontrada</Text>
+                            </View>
+                        )
     
   }
 
@@ -69,17 +93,25 @@ const styles = StyleSheet.create({
     color:'#000000df',
     fontFamily:'Times New Roman',
     fontWeight:'bold',
-    foontStyle:'italic',
+            fontStyle:'italic',
   },
     botonescontainer:{
-    marginTop:20,
-    flexDirection:'row',
-    gap:10,
+            marginTop:20,
+            flexDirection:'row',
+            flexWrap:'wrap',
+            justifyContent:'space-between',
+            width: '90%',
   },
     botonescontainer2:{
-    marginTop:40,
-    flexDirection:'row',
-    gap:10 ,
+            marginTop:16,
+            flexDirection:'row',
+            flexWrap:'wrap',
+            justifyContent:'space-between',
+            width: '90%',
   },
+        buttonWrapper:{
+            width: '48%',
+            marginVertical:6,
+        },
 
 })
