@@ -23,13 +23,13 @@ export default function MenuScreen () {
     case 'image_background':
         return <Expo3/>;
     case 'scroll_view':
-        return <Barra/>;
+        return <Barra setScreen={setScreen} />;
     case 'activity_indicator':
         return <Indicador/>;
     case 'flatlist_sectionlist':
         return <Listas/>;
     case 'modal':
-        return <ModalScreen/>;
+        return <ModalScreen setScreen={setScreen} />;
     case 'repaso':
         return <RepasoScreen/>;
         case 'menu': 
@@ -50,23 +50,23 @@ export default function MenuScreen () {
                                         <Button onPress={()=> setScreen('image_background')} title = 'Practica: Image & Background'/>
                                     </View>
                                 </View>
-                                <View style={styles.botonescontainer2}>
-                                    <View style={styles.buttonWrapper}>
-                                        <Button onPress={()=> setScreen('scroll_view')} title = 'Practica: ScrollView'/>
-                                    </View>
-                                    <View style={styles.buttonWrapper}>
-                                        <Button onPress={()=> setScreen('activity_indicator')} title = 'Practica: Activity Indicator'/>
-                                    </View>
-                                    <View style={styles.buttonWrapper}>
-                                        <Button onPress={()=> setScreen('flatlist_sectionlist')} title = 'Practica:FlatListSectionList'/>
-                                    </View>
-                                    <View style={styles.buttonWrapper}>
-                                        <Button onPress={()=> setScreen('modal')} title = 'Practica: Modal'/>
-                                    </View>
-                                    <View style={styles.buttonWrapper}>
-                                        <Button onPress={()=> setScreen('repaso')} title = 'Practica: Repaso'/>
-                                    </View>
-                                </View>
+                                                <View style={styles.botonescontainer2}>
+                                                    <View style={styles.buttonWrapper}>
+                                                        <Button onPress={()=> setScreen('scroll_view')} title = 'Practica: ScrollView'/>
+                                                    </View>
+                                                    <View style={styles.buttonWrapper}>
+                                                        <Button onPress={()=> setScreen('activity_indicator')} title = 'Practica: Activity Indicator'/>
+                                                    </View>
+                                                    <View style={styles.buttonWrapper}>
+                                                        <Button onPress={()=> setScreen('flatlist_sectionlist')} title = 'Practica:FlatListSectionList'/>
+                                                    </View>
+                                                    <View style={styles.buttonWrapper}>
+                                                        <Button onPress={()=> setScreen('modal')} title = 'Practica: Modal'/>
+                                                    </View>
+                                                    <View style={styles.buttonWrapper}>
+                                                        <Button onPress={()=> setScreen('repaso')} title = 'Practica: Repaso'/>
+                                                    </View>
+                                                </View>
                         </View>
                         );
                         default: 

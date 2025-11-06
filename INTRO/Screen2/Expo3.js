@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react'
 const BackgroundImage = require("../assets/splash-icon.png");
 
 export default function Expo3({navegation}) {
-  const [showSplash, setshowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(true);
   useEffect (() => {
     const timer = setTimeout(() => {
-      setshowSplash(false);
+  setShowSplash(false);
     }, 3000);
     return() => clearTimeout(timer);
   },[]);
@@ -70,3 +70,10 @@ const styles = StyleSheet.create({
     color: '#333',
   },
 });
+
+
+
+
+
+
+//Unaves tenemos estoo 
