@@ -5,7 +5,7 @@ import ContadorScreen2 from './ContadorScreen2'
 import Texto from './Texto'
 import Indicador from './Indicador'
 import Listas from './Listas'
-import ModalScreen from './ModalScreen'
+import ModalScreen from './MODAL'
 import Barra from './Barra'
 import Expo3 from './Expo3'
 import RepasoScreen from './RepasoScreen'
@@ -23,13 +23,13 @@ export default function MenuScreen () {
     case 'image_background':
         return <Expo3/>;
     case 'scroll_view':
-        return <Barra setScreen={setScreen} />;
+        return <Barra  />;
     case 'activity_indicator':
         return <Indicador/>;
     case 'flatlist_sectionlist':
         return <Listas/>;
     case 'modal':
-        return <ModalScreen setScreen={setScreen} />;
+        return <ModalScreen/>;
     case 'repaso':
         return <RepasoScreen/>;
         case 'menu': 
