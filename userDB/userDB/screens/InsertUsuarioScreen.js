@@ -10,6 +10,7 @@ export default function UsuarioView() {
   const [nombre, setNombre] = useState('');
   const [loading, setLoading] = useState(true);
   const [guardando, setGuardando] = useState(false);
+  const [editando, setEditando] = useState(null); 
 
   const cargarUsuarios = useCallback(async () => {
     try {
@@ -43,9 +44,18 @@ export default function UsuarioView() {
     if(guardando) return;
       try{
         setGuardando(true);
-        const usuarioCreado = await controller.crearUsuario(nombre);
-        Alert.alert(' Usuario Creado', `"${usuarioCreado.nombre}" guardado con ID: ${usuarioCreado.id}`
-        );
+        
+        if(editando){
+ 
+          await controller.actualizarUsuario(editando, nombre);
+          Alert.alert('Usuario Actualizado', `"${nombre}" se actualizó correctamente`);
+          setEditando(null);
+        } else {
+
+          const usuarioCreado = await controller.crearUsuario(nombre);
+          Alert.alert('Usuario Creado', `"${usuarioCreado.nombre}" guardado con ID: ${usuarioCreado.id}`);
+        }
+        
         setNombre('');
       }
       catch (error){
@@ -54,6 +64,41 @@ export default function UsuarioView() {
     finally{
       setGuardando(false);
     }
+  };
+
+  const handleEditar = (usuario) => {
+    setEditando(usuario.id);
+    setNombre(usuario.nombre);
+  };
+
+  const handleCancelarEdicion = () => {
+    setEditando(null);
+    setNombre('');
+  };
+
+  const handleEliminar = (usuario) => {
+    Alert.alert(
+      'Confirmar Eliminación',
+      `¿Estás seguro de eliminar a "${usuario.nombre}"?`,
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await controller.eliminarUsuario(usuario.id);
+              Alert.alert('Usuario Eliminado', `"${usuario.nombre}" fue eliminado`);
+            } catch (error) {
+              Alert.alert('Error', error.message);
+            }
+          }
+        }
+      ]
+    );
   };
 
   const renderUsuario = ({item, index}) => (
@@ -72,6 +117,18 @@ export default function UsuarioView() {
           })}
         </Text>
       </View>
+      <View style={styles.userActions}>
+        <TouchableOpacity 
+          style={[styles.actionButton, styles.editButton]}
+          onPress={() => handleEditar(item)}>
+          <Text style={styles.actionButtonText}>Editar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={[styles.actionButton, styles.deleteButton]}
+          onPress={() => handleEliminar(item)}>
+          <Text style={styles.actionButtonText}>Eliminar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
@@ -81,15 +138,26 @@ export default function UsuarioView() {
 
       {/* Zona del encabezado */}
 
-      <Text style={styles.title}> INSERT & SELECT</Text>
+      <Text style={styles.title}>INSERT & SELECT / CRUD</Text>
       <Text style={styles.subtitle}>
         {Platform.OS === 'web' ? ' WEB (LocalStorage)' : ` ${Platform.OS.toUpperCase()} (SQLite)`}
       </Text>
 
-      {/* Zona del INSERT */}
+      {/* Zona del INSERT*/}
 
       <View style={styles.insertSection}>
-        <Text style={styles.sectionTitle}> Insertar Usuario</Text>
+        <Text style={styles.sectionTitle}>
+          {editando ? 'Editar Usuario' : 'Insertar Usuario'}
+        </Text>
+        
+        {editando && (
+          <View style={styles.editingBanner}>
+            <Text style={styles.editingText}>Editando usuario ID: {editando}</Text>
+            <TouchableOpacity onPress={handleCancelarEdicion}>
+              <Text style={styles.cancelText}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
+        )}
         
         <TextInput
           style={styles.input}
@@ -100,12 +168,16 @@ export default function UsuarioView() {
         />
 
         <TouchableOpacity 
-          style={[styles.button, guardando && styles.buttonDisabled]} 
+          style={[
+            styles.button, 
+            guardando && styles.buttonDisabled,
+            editando && styles.buttonEdit
+          ]} 
           onPress={handleAgregar}
           disabled={guardando} >
 
           <Text style={styles.buttonText}>
-            {guardando ? ' Guardando...' : 'Agregar Usuario'}
+            {guardando ? 'Guardando...' : editando ? 'Actualizar Usuario' : 'Agregar Usuario'}
           </Text>
 
         </TouchableOpacity>
@@ -293,6 +365,53 @@ const styles = StyleSheet.create({
   userDate: {
     fontSize: 12,
     color: '#666',
+  },
+  userActions: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  actionButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: 70,
+  },
+  editButton: {
+    backgroundColor: '#007AFF',
+  },
+  deleteButton: {
+    backgroundColor: '#FF3B30',
+  },
+  actionButtonText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#fff',
+  },
+  buttonEdit: {
+    backgroundColor: '#007AFF',
+  },
+  editingBanner: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#fafafa',
+    padding: 10,
+    borderRadius: 6,
+    marginBottom: 10,
+    borderLeftWidth: 3,
+    borderLeftColor: '#007AFF',
+  },
+  editingText: {
+    color: '#333',
+    fontSize: 13,
+    fontWeight: '600',
+  },
+  cancelText: {
+    color: '#007AFF',
+    fontSize: 14,
+   
   },
   emptyContainer: {
     alignItems: 'center',
